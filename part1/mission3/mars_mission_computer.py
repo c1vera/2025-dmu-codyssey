@@ -1,4 +1,4 @@
-CSV_OUTPUT_PATH = 'C:/Users/yahwa/Desktop/project/2025-dmu-codyssey/part1/mission3/sensor_log.txt'
+CSV_OUTPUT_PATH = './part1/mission3/sensor_log.txt'
 
 import random
 from datetime import datetime
@@ -36,7 +36,7 @@ class DummySensor:
             f"{self.env_values['mars_base_internal_oxygen']}%\n"
         )
 
-        with open(CSV_OUTPUT_PATH, 'a') as log_file:
+        with open(CSV_OUTPUT_PATH, 'a', encoding='utf-8') as log_file:
             log_file.write(log_line)
 
         return self.env_values
