@@ -16,7 +16,6 @@ class MissionComputer:
         print("센서 데이터 수집 시작 (q 키를 누르면 종료)\n")
 
         while True:
-            # 센서 데이터 수집
             self.sensor.set_env()
             self.env_values = self.sensor.get_env()
             self.history.append(self.env_values.copy())
@@ -25,8 +24,7 @@ class MissionComputer:
             for key, value in self.env_values.items():
                 print(f"  '{key}': {value},")
             print('}')
-
-            # 5분 평균 출력
+            # 원래 5분 평균을 내야하지만.. 테스트 용으로 30초마다 평균을 내도록 수정
             if time.time() - start_time >= 30:
                 self.print_5min_average()
                 self.history.clear()
@@ -39,13 +37,13 @@ class MissionComputer:
                 if is_q_pressed():
                     print("\nSystem stopped…")
                     return
-                time.sleep(0.1)
+                time.sleep(0.5)
 
     def print_5min_average(self):
         if not self.history:
             print('No data to calculate average.')
             return
-# 5분 평균을 내야하지만.. 테스트 용으로 30초마다 평균을 내도록 수정
+
         print('\n=== 5분 평균 환경 정보 ===')
         for key in self.history[0]:
             total = sum(entry[key] for entry in self.history)
