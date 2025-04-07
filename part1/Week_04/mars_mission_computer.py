@@ -27,12 +27,12 @@ class MissionComputer:
             print('}')
 
             # 5분 평균 출력
-            if time.time() - start_time >= 300:
+            if time.time() - start_time >= 30:
                 self.print_5min_average()
                 self.history.clear()
                 start_time = time.time()
 
-            print("5초 대기 중... 'q' 키를 누르면 종료됩니다.")
+            print("키보드의 'q' 키를 누르면 종료됩니다.")
             
             # 5초 동안 0.1초 단위로 q 키 감지
             for _ in range(50):
@@ -45,7 +45,7 @@ class MissionComputer:
         if not self.history:
             print('No data to calculate average.')
             return
-
+# 5분 평균을 내야하지만.. 테스트 용으로 30초마다 평균을 내도록 수정
         print('\n=== 5분 평균 환경 정보 ===')
         for key in self.history[0]:
             total = sum(entry[key] for entry in self.history)
