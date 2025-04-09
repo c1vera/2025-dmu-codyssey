@@ -37,7 +37,7 @@ class MissionComputer:
                 if is_q_pressed():
                     print("\nSystem stopped…")
                     return
-                time.sleep(0.5)
+                time.sleep(0.1)
 
     def print_5min_average(self):
         if not self.history:
