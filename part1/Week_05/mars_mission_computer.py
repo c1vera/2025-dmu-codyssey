@@ -1,13 +1,9 @@
-# 4주차에서 사용한 라이브러리
 import time
-from dummy_sensor import DummySensor
-from cross_platform_key_listener import is_q_pressed 
-
-# 시스템 정보를 가져오는 라이브러리
 import platform
 import os
 import psutil
-
+from dummy_sensor import DummySensor
+from cross_platform_key_listener import is_q_pressed
 
 ds = DummySensor()
 
@@ -16,7 +12,8 @@ class MissionComputer:
     def __init__(self):
         self.env_values = {}
         self.sensor = ds
-        self.history = []
+        # 처음에 센서 데이터 키를 기준으로 빈 리스트를 가진 딕셔너리 생성
+        self.history = {key: [] for key in self.sensor.get_env()}
         self.settings = self.load_settings()
 
     def load_settings(self):
@@ -86,13 +83,17 @@ class MissionComputer:
         while True:
             self.sensor.set_env()
             self.env_values = self.sensor.get_env()
-            self.history.append(self.env_values.copy())
+
+            # 각 키에 대해 값을 나눠서 저장함 (평균 계산 쉽게 하려고 이렇게 함)
+            for key in self.env_values:
+                self.history[key].append(self.env_values[key])
 
             self.format_json_like(self.env_values)
 
             if time.time() - start_time >= 30:  # 테스트용: 30초
                 self.print_5min_average()
-                self.history.clear()
+                # 평균 출력 후 기록 초기화
+                self.history = {key: [] for key in self.env_values}
                 start_time = time.time()
 
             print("키보드의 'q' 키를 누르면 종료됩니다.")
@@ -104,15 +105,12 @@ class MissionComputer:
                 time.sleep(0.1)
 
     def print_5min_average(self):
-        if not self.history:
-            print('No data to calculate average.')
-            return
-
         print('\n=== 5분 평균 환경 정보 ===')
-        for key in self.history[0]:
-            total = sum(entry[key] for entry in self.history)
-            avg = round(total / len(self.history), 2)
-            print(f'{key}: {avg}')
+        for key, values in self.history.items():
+            if values:
+                avg = round(sum(values) / len(values), 2)
+                # 평균은 소수점 둘째 자리까지 반올림
+                print(f'{key}: {avg}')
         print('==========================\n')
 
 
