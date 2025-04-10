@@ -1,9 +1,13 @@
+# 4주차에서 사용한 라이브러리
 import time
+from dummy_sensor import DummySensor
+from cross_platform_key_listener import is_q_pressed 
+
+# 시스템 정보를 가져오는 라이브러리
 import platform
 import os
 import psutil
-from dummy_sensor import DummySensor
-from cross_platform_key_listener import is_q_pressed  # 핵심 추가
+
 
 ds = DummySensor()
 
