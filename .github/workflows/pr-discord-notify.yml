@@ -19,11 +19,11 @@ jobs:
           else
             MESSAGE="새로운 PR이 생성되었습니다: ${{ github.event.pull_request.html_url }}"
           fi
-          echo "content=$MESSAGE" >> $GITHUB_OUTPUT
+          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: 디스코드로 메시지 전송
-        uses: Ilshidur/action-discord@master
+        uses: tsickert/discord-webhook@v1.0.0
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: ${{ steps.set-message.outputs.content }}
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          message: ${{ steps.set-message.outputs.message }}
