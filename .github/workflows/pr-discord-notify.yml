@@ -27,4 +27,5 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           content: ${{ steps.set-message.outputs.message }}
-          username: "LPick Bot"
+          username: "LPick PR Bot"
+          avatar-url: "https://i.pinimg.com/736x/db/a7/3f/dba73fae2136ecef673a8861b7a98e3e.jpg"
