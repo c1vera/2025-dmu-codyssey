@@ -13,7 +13,7 @@ jobs:
         run: |
           AUTHOR="${{ github.actor }}"
           if [ "$AUTHOR" = "c1vera" ]; then
-            MESSAGE="<@370855858260672512> 님! 채원이 PR을 열었어요 🔔%0A👉 ${{ github.event.pull_request.html_url }}"
+            MESSAGE="<@287923007425478668> 님! 채원이 PR을 열었어요 🔔%0A👉 ${{ github.event.pull_request.html_url }}"
           elif [ "$AUTHOR" = "ckdduf138" ]; then
             MESSAGE="<@287923007425478668> 님! 창열이 PR을 열었어요 🔔%0A👉 ${{ github.event.pull_request.html_url }}"
           else
