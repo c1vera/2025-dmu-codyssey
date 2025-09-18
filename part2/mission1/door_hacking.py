@@ -39,7 +39,7 @@ def try_passwords(zip_binary, target_file, charset, length, prefix_group, is_fou
                             is_found.value = True
                             result_holder.value = password.encode('utf-8')
                             elapsed = time.time() - start_time
-                            print(f'\n✅ [성공] 비밀번호: {password}')
+                            print(f'\n✅ [성공] 비밀번호: {password}')  
                             print(f'⏱️ 경과 시간: {elapsed:.2f}초')
                     return
             except (RuntimeError, zipfile.BadZipFile, zlib.error):
@@ -53,11 +53,6 @@ def try_passwords(zip_binary, target_file, charset, length, prefix_group, is_fou
 
 
 def unlock_zip_password(zip_path: str, length: int = 6, process_count: int = 4) -> str | None:
-    """
-    여러 프로세스를 사용해 ZIP 파일의 비밀번호를 브루트포스로 찾아내는 함수입니다.
-    """
-    charset = 'abcdefghijklmnopqrstuvwxyz0123456789'  # 소문자 + 숫자 조합
-
     # zip 파일 전체를 메모리에 올려서 빠르게 접근할 수 있도록 처리
     with open(zip_path, 'rb') as f:
         zip_bytes = f.read()
@@ -98,6 +93,9 @@ def unlock_zip_password(zip_path: str, length: int = 6, process_count: int = 4) 
     else:
         print('❌ 비밀번호를 찾지 못했습니다.')
         return None
+
+# 문자 집합 정의 (영문 소문자 + 숫자)
+charset = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
 
 if __name__ == '__main__':
