@@ -110,6 +110,43 @@
             font-style: italic;
         }
         
+        .location-info {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 10px;
+            border: 2px solid #4caf50;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+        
+        .location-info h2 {
+            color: #4caf50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .location-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .location-details p {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin: 0;
+        }
+        
+        .location-details strong {
+            color: #4caf50;
+        }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -128,6 +165,8 @@
             <p>무한한 우주의 깊은 어둠 속에서, 용감한 우주 해적들이 별들 사이를 누비며 모험을 떠납니다. 
             그들은 자유를 추구하고, 보물을 찾으며, 우주의 신비를 탐험하는 진정한 모험가들입니다.</p>
         </div>
+        
+        <!-- LOCATION_INFO_PLACEHOLDER -->
         
         <div class="section">
             <h2>🌟 우주 해적이란?</h2>
