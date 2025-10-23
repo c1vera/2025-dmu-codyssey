@@ -1,0 +1,31 @@
+name: PR 알림 디스코드 전송
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 리뷰어 매핑 및 메시지 생성
+        id: set-message
+        run: |
+          AUTHOR="${{ github.actor }}"
+          if [ "$AUTHOR" = "c1vera" ]; then
+            MESSAGE="<@287923007425478668> 님! 채원님이 PR을 열었어요! 리뷰 부탁드려요 👉 ${{ github.event.pull_request.html_url }}"
+          elif [ "$AUTHOR" = "ckdduf138" ]; then
+            MESSAGE="<@287923007425478668> 님! 창열님이 PR을 열었어요! 리뷰 부탁드려요 👉 ${{ github.event.pull_request.html_url }}"
+          else
+            MESSAGE="새로운 PR이 생성되었습니다! 리뷰 부탁드려요 👉 ${{ github.event.pull_request.html_url }}"
+          fi
+          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: 디스코드로 메시지 전송
+        uses: tsickert/discord-webhook@v1.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          content: ${{ steps.set-message.outputs.message }}
+          username: "LPick PR Bot"
+          avatar-url: "https://i.pinimg.com/736x/db/a7/3f/dba73fae2136ecef673a8861b7a98e3e.jpg"
