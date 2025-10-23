@@ -8,7 +8,7 @@
 import time
 import os
 import random
-import pyperclip
+import tkinter as tk
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -28,7 +28,15 @@ class NaverLoginCrawler:
         self.driver = None
         self.wait = None
         self.login_content = []
-        
+        self.clipboard = tk.Tk()
+        self.clipboard.withdraw()  # tkinter 창을 숨김
+    
+    def copy_to_clipboard(self, text):
+        """클립보드에 텍스트 복사"""
+        self.clipboard.clipboard_clear()
+        self.clipboard.clipboard_append(text)
+        self.clipboard.update()  # 클립보드 업데이트
+    
     def setup_driver(self):
         """셀레니움 드라이버 설정"""
         chrome_options = Options()
@@ -106,7 +114,7 @@ class NaverLoginCrawler:
             time.sleep(0.5)
             
             # 클립보드에 아이디 복사 후 붙여넣기
-            pyperclip.copy(user_id)
+            self.copy_to_clipboard(user_id)
             id_input.send_keys(Keys.CONTROL + 'v')
             time.sleep(1)
             
@@ -116,7 +124,7 @@ class NaverLoginCrawler:
             time.sleep(0.5)
             
             # 클립보드에 비밀번호 복사 후 붙여넣기
-            pyperclip.copy(user_pw)
+            self.copy_to_clipboard(user_pw)
             pw_input.send_keys(Keys.CONTROL + 'v')
             time.sleep(1)
             
@@ -367,6 +375,10 @@ class NaverLoginCrawler:
         if self.driver:
             self.driver.quit()
             print('드라이버가 종료되었습니다.')
+        
+        # tkinter 클립보드 정리
+        if hasattr(self, 'clipboard'):
+            self.clipboard.destroy()
 
 
 def main():
