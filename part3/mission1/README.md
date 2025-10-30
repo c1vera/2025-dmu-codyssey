@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 문제2 감동의 메시지 - HTML 메일 전송 프로그램
 
 ## 개요
@@ -148,3 +149,8 @@ python sendmail.py
 
 이 프로젝트는 교육 목적으로 제작되었습니다.
 
+=======
+<img width="492" height="446" alt="image" src="https://github.com/user-attachments/assets/ecbb9f5c-115c-45bf-bb39-9488d73b7ae0" />
+<img width="885" height="681" alt="image" src="https://github.com/user-attachments/assets/9286783a-3f32-4da9-be33-f2b8cda87ce5" />
+<img width="1329" height="110" alt="image" src="https://github.com/user-attachments/assets/aab82851-b0c2-4dbb-92d9-451d0b8cc3d9" />
+>>>>>>> 8a16c1ccf1a0ed517ae0239975d995e347621d18
