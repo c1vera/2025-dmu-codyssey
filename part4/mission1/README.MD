@@ -1,4 +1,4 @@
-미션: FastAPI 기반 TO-DO API (venv + uvicorn + CSV 저장)
+FastAPI 기반 TO-DO API (venv + uvicorn + CSV 저장)
 
 개발 환경
 - Python 3.x
@@ -41,12 +41,3 @@ curl로 동작 확인 예시
 
 2) 조회 (GET)
    curl -s "http://127.0.0.1:8000/todos/list"
-
-코딩 규약
-- 문자열은 기본적으로 ' ' 사용
-- = 양옆 공백 유지 (예: foo = (0,))
-- 들여쓰기는 공백 사용, PEP 8 준수
-- 함수 이름은 소문자 + snake_case
-- APIRouter 사용 필수
-
-
